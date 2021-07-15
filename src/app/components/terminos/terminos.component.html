@@ -1,0 +1,73 @@
+<div class="card bg-dark text-white" *ngIf="visible">
+  <img class="card-img" src="../assets/firma.jpg" style="opacity: 0.5; background-size: auto; max-height: 10rem"
+    alt="Card image" />
+  <div class="card-img-overlay text-center">
+    <h1>Terminos y Condiciones</h1>
+  </div>
+</div>
+<div class="card mx-3" *ngIf="visible" style="margin-bottom: 30px; margin-top: 15px;">
+  <div class="card text-center" style="background-color:#e8273a; color: white;">
+    <h1>Declaraciones:</h1>
+  </div>
+  <div class="card-cont" style="margin: 1rem; max-height: 24rem; overflow:scroll;">
+    <div class="card-declaraciones" style="text-align: justify;">
+      <p>
+        <strong>
+          I. Declara “TDSIFIN S.A.P.I. de C.V.” en adelante “TODOSÍ”, por
+          conducto de su Apoderado Legal, que:
+        </strong>
+        a) Es una sociedad mercantil constituida conforme con las leyes de la
+        República Mexicana. b) Por su objeto social puede realizar operaciones
+        crediticias. c) Su domicilio es el ubicado en Avenida Colonia Del Valle
+        615, colonia Del Valle, Alcaldía Benito Juárez, C.P. 03100, Ciudad de
+        México y su portal de internet es www.todosí.com, en dicha página se
+        podrán consultar las cuentas que TODOSÍ mantiene activas en las redes
+        sociales. d) Que está en disposición de ofrecer a EL USUARIO los
+        Servicios Digitales, previa obtención de la documentación e información
+        necesaria para la prospectación del producto y e) Que para poder operar
+        los “Servicios Digitales” contratados en este documento, se requiere que
+        EL USUARIO celebre un contrato de crédito a través de los medios y
+        condiciones que en este documento se establecen.
+      </p>
+      <p>
+        <strong>
+          I. Declara “TDSIFIN S.A.P.I. de C.V.” en adelante “TODOSÍ”, por
+          conducto de su Apoderado Legal, que:
+        </strong>
+        a) Es una sociedad mercantil constituida conforme con las leyes de la
+        República Mexicana. b) Por su objeto social puede realizar operaciones
+        crediticias. c) Su domicilio es el ubicado en Avenida Colonia Del Valle
+        615, colonia Del Valle, Alcaldía Benito Juárez, C.P. 03100, Ciudad de
+        México y su portal de internet es www.todosí.com, en dicha página se
+        podrán consultar las cuentas que TODOSÍ mantiene activas en las redes
+        sociales. d) Que está en disposición de ofrecer a EL USUARIO los
+        Servicios Digitales, previa obtención de la documentación e información
+        necesaria para la prospectación del producto y e) Que para poder operar
+        los “Servicios Digitales” contratados en este documento, se requiere que
+        EL USUARIO celebre un contrato de crédito a través de los medios y
+        condiciones que en este documento se establecen.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="card mx-3" style="margin-top: 50%;" *ngIf="terminosAceptados">
+    <div class="card text-center" style="background-color:#e8273a; color: white;">
+        <h1>NIP:</h1>
+    </div>
+    
+        <p style="font-size: xx-large; text-align: center; margin-top: 15px;">{{nip}}</p>
+    
+</div>
+  <div class="input-group-prepend" *ngIf="visible">
+   <p style="text-align: center;"> <strong>Yo: {{nombreCliente}} </strong> </p>
+   <p style="text-align: center;"><strong> CURP: {{CURP}}</strong></p>
+    <span class="input-group-text" style="background-color:#e8273a; color: white; justify-content: center;">
+        <mat-checkbox (change)="onChecked()">
+        Acepta Terminos y Condiciones</mat-checkbox>
+    </span>
+  </div>
+  
+
+
+ 
