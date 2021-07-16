@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { InformacionDispositivoService } from 'src/app/services/informacion-dispositivo.service';
 
 @Component({
@@ -11,19 +11,26 @@ export class TerminosComponent implements OnInit {
 
   public terminosAceptados = false;
   public visible = true;
-  public ipDireccion = '';
+  public datosVisibles = false;
+  public ipDireccion = ''; 
   public nip = '';
   public nombreCliente = '';
   public CURP = '';
-  constructor(private ip: InformacionDispositivoService, private route:ActivatedRoute) { }
+  idInstance =''
+  constructor(private infoService: InformacionDispositivoService, 
+              private route:ActivatedRoute) { }
   
 
   
-  ngOnInit(): void {
+ async ngOnInit() {
     this.getIP();
+    this.infoService.consultIdInstance('OPB3340').subscribe((res: any) =>{
+      console.log(res)
+    })
     let parametroHash = this.route.snapshot.params['dta'];
-    let decodifica = window.atob(parametroHash);
-    let arregloParametros = decodifica.split('&');
+    try {
+      let decodifica = window.atob(parametroHash);
+      let arregloParametros = decodifica.split('&');
     for(let  i = 0 ; i < arregloParametros.length; i++){
       let arregloLimpio = arregloParametros[i].split('=');
       arregloParametros[i]=arregloLimpio[1]
@@ -31,11 +38,32 @@ export class TerminosComponent implements OnInit {
     this.nip = arregloParametros[0]
     this.CURP = arregloParametros[1]
     this.nombreCliente = arregloParametros[2]
-
-  
+    this.idInstance = arregloParametros[3]
+    console.log(arregloParametros)
+    await this.valInfo();
+  } catch(e) {
+    alert('Hubo un problema con la información')
+    console.log(e)
+    this.visible = false
+    window.location.href = 'https://www.came.org.mx/'
+  }
+    
+  }
+  async valInfo(){
+    let pattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
+    let numberPattern = /^[0-9]+$/
+    if(this.nip.length == 5 && this.nip.match(numberPattern) && this.idInstance.match(pattern) ){
+      this.datosVisibles = true
+    }  
+    else{
+      alert('Hubo un problema con la información')
+      this.visible = false
+      window.location.href = 'https://www.came.org.mx/'
+    }
+    
   }
   getIP(){
-    this.ip.getIpAddress().subscribe((res:any)=>{  
+    this.infoService.getIpAddress().subscribe((res:any)=>{  
       this.ipDireccion=res.ip;
       console.log(this.ipDireccion,navigator)
     });  

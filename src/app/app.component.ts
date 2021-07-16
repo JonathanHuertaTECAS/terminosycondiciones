@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit{
   constructor(private route: Router) { }
   title = 'terminosycondiciones';
-  str = "NIP=12345&CURP=SUGS881209HDFNNM92&NombreCompleto=Naranja Vale Suarez Galvan&Engine_InstanceId=7047509%-1B58-4432-A184-FE29088ED6BA";
+  str = "NIP=12345&CURP=SUGS881209HDFNNM92&NombreCompleto=Naranja Vale Suarez Galvan&Engine_InstanceId=1e601ec7-fb00-4deb-a8bb-d9da5147d878";
   
   encq = window.btoa(this.str);
 
@@ -19,5 +19,6 @@ export class AppComponent implements OnInit{
 
   
   ngOnInit(): void{
-    this.route.navigate(['/terminos-y-condiciones',this.encq]);  }
+    console.log(this.encq)
+  }
 }
