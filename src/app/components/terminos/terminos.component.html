@@ -1,11 +1,10 @@
-<div class="card bg-dark text-white" *ngIf="visible">
-  <img class="card-img" src="../assets/firma.jpg" style="opacity: 0.5; background-size: auto; max-height: 10rem"
+<!-- <div class="card " *ngIf="visible">
+  <img class="card-img" src="../../../assets/logo-came.webp" style="opacity: 0.5;"
     alt="Card image" />
-  <div class="card-img-overlay text-center">
-    <h1>Terminos y Condiciones</h1>
-  </div>
-</div>
-<div class="card mx-3" *ngIf="visible" style="margin-bottom: 30px; margin-top: 15px;">
+  
+</div> -->
+
+<!-- <div class="card mx-3" *ngIf="visible" style="margin-bottom: 30px; margin-top: 15px;">
   <div class="card text-center" style="background-color:#e8273a; color: white;">
     <h1>Declaraciones:</h1>
   </div>
@@ -65,9 +64,42 @@
     <span class="input-group-text" style="background-color:#e8273a; color: white; justify-content: center;">
         <mat-checkbox (change)="onChecked()">
         Acepta Terminos y Condiciones</mat-checkbox>
-    </span>
+    </strong></span>
   </div>
   
 
 
- 
+  -->
+  <section style="margin-top: 30px;">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1">
+        <div class="container">
+          <img class="card-img" src="../../../assets/logo-came.webp" alt="Card image" style="margin: 0px auto 20px auto; text-align: center; display: block; width: 184px; height: 100px;"/>
+          <hr style="border-bottom: 2px; margin-bottom: 30px; width: 60%; background-color: #be1622; opacity: 2.1; align-self: center; margin-inline: auto; height: 2px;">
+          <div  *ngIf="visible">
+          <h2 class="text-center" style="font-size: 32px; font-family: 'Lato', sans-serif;">Autorización para solicitar reporte de crédito</h2>
+          <p class="text-center">Autorizo expresamente tenga vigencia de 3 años contados a partir de hoy, y en su caso mientras mantengamos relación jurídica</p>
+	        			<p class="text-center">Que este documento quede en propiedad de CONSEJO DE ASISTENCIA AL MICROEMPRENDEDOR, S.A. DE C.V. S.F.P. Y/O cualquier Sociedad de Información Crediticia para efectos de control y cumplimiento del articulo 28 de la Ley Regular a Las Sociedades de Información Crediticia; mismo que señala que las Sociedades sólo podrán proporcionar información a un Usuario, cuando éste cuente con la autorización expresa  del Cliente mediante su consentimiento expreso.</p>
+	        			<!-- <p class="text-center">Firma de conformidad</p> -->
+              <p class="text-center">Nombre completo: <span><strong>{{nombreCliente}}</strong></span></p>
+              <p class="text-center">CURP: <span><strong>{{CURP}}</strong></span></p>
+              <p class="text-center">
+                <input type="checkbox" (change)="onChecked()" >
+                   <span style="margin-left: 10px;">Acepto <a href="https://www.came.org.mx/libs/inher/pdf/consulta-los-costos-y-comisiones-de-nuestros-productos.pdf" style="color: #be1622;" target="_blank" class="terminos">Términos y Condiciones</a> y Cláusula de medios electrónicos tales como NIP</span>
+                  </p>   
+              <p class="text" style="color: #be1622;" *ngIf="error">* Se debe marcar la casilla para Aceptar terminos y condiciones</p>
+             
+          </div>
+          <div class="nip" *ngIf="terminosAceptados">
+            <p>NIP</p>
+            <strong >{{nip}}</strong>
+          </div>
+          <div class="modal-footer">
+                <button type="button" class="btn btn-principal" value="Aceptar"  (click)="Submit()" *ngIf="visible">Aceptar</button>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

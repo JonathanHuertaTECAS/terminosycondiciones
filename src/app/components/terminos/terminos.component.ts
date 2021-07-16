@@ -11,12 +11,15 @@ export class TerminosComponent implements OnInit {
 
   public terminosAceptados = false;
   public visible = true;
-  public datosVisibles = false;
   public ipDireccion = ''; 
   public nip = '';
   public nombreCliente = '';
   public CURP = '';
+  public error = false
+  public casillaMarcada = false
   idInstance =''
+  
+  
   constructor(private infoService: InformacionDispositivoService, 
               private route:ActivatedRoute) { }
   
@@ -53,7 +56,7 @@ export class TerminosComponent implements OnInit {
     let pattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
     let numberPattern = /^[0-9]+$/
     if(this.nip.length == 5 && this.nip.match(numberPattern) && this.idInstance.match(pattern) ){
-      this.datosVisibles = true
+      this.visible = true
     }  
     else{
       alert('Hubo un problema con la información')
@@ -69,11 +72,30 @@ export class TerminosComponent implements OnInit {
     });  
   }
   onChecked(){
-    const dia = new Date();
-    let fecha = dia; /* ('0' + dia.getDate()).slice(-2) + '-' + ('0' + (dia.getMonth() + 1)).slice(-2) + '-' + dia.getFullYear() + ' ' + dia.getHours() + ':' + dia.getMinutes() + ':' + dia.getSeconds() ; */
-    console.log(fecha)
-    this.terminosAceptados = true
-    this.visible = false
+    if(this.casillaMarcada){
+      this.casillaMarcada = false;
+    }
+    else
+    {
+      this.casillaMarcada = true
+    }
+  }
+  Submit(){
+    console.log(this.casillaMarcada)
+    if(this.casillaMarcada){
+      const dia = new Date(Date.now()).toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });;
+      const diaS = new Date(Date.now()).toLocaleString('en-MX', { timeZone: 'America/Mexico_City' });;
+      console.log(diaS, dia)
+      let fecha = diaS; /* ('0' + dia.getDate()).slice(-2) + '-' + ('0' + (dia.getMonth() + 1)).slice(-2) + '-' + dia.getFullYear() + ' ' + dia.getHours() + ':' + dia.getMinutes() + ':' + dia.getSeconds() ; */
+      console.log(fecha)
+      this.terminosAceptados = true
+      this.visible = false
+      console.log(this.terminosAceptados)
+    }
+    else{
+      this.error = true;
+
+    }
   }
 
 }
